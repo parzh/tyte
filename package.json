@@ -12,7 +12,6 @@
     "type",
     "types"
   ],
-  "private": true,
   "files": [
     "/index.ts",
     "/index.d.ts",
