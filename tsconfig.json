@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		// Output
+		"target": "es2015",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"declaration": true,
+		"sourceMap": true,
+		"isolatedModules": true,
+
+		// Development
+		"strict": true,
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+		"skipDefaultLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+	},
+}
