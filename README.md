@@ -6,6 +6,7 @@ Write Jest tests for TypeScript types.
 
 ```ts
 export type MyNumber = number;
+export type MyFunction = (input: string) => boolean;
 ```
 
 ## Positive testing:
@@ -14,6 +15,16 @@ export type MyNumber = number;
 test("MyNumber should resolve to a number", tyte((value: MyNumber) => {
 	tyte.expectType<number>(value);
 }));
+
+describe("MyFunction", () => {
+	it("should take a string input", tyte((subject: MyFunction) => {
+		tyte.fn.expectParams<[string]>(subject);
+	}));
+
+	it("should return a boolean", tyte((subject: MyFunction) => {
+		tyte.fn.expectReturns<boolean>(subject);
+	}));
+});
 ```
 
 ## Negative testing:
