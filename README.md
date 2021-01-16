@@ -51,13 +51,14 @@ test("MyNumber should resolve to a number", tyte((
 ## Iterate over several subjects in [`.each` methods](https://jestjs.io/docs/en/api#methods):
 
 ```ts
-type Vertical = "up" | "forward" | "down";
-type Horizontal = "left" | "forward" | "right";
+type Forward = "forward";
+type Vertical = "up" | "down" | Forward;
+type Horizontal = "left" | "right" | Forward;
 
 test.each([
-	[ "Vertical", tyte.subject as Vertical & "forward" ],
-	[ "Horizontal", tyte.subject as Horizontal & "forward" ],
-])("%s should include 'forward'", (typeName, subject) => {
+	[ "Vertical", tyte.subject as Vertical & Forward ],
+	[ "Horizontal", tyte.subject as Horizontal & Forward ],
+])("%s should include 'forward'", (identifier, subject) => {
 	tyte.expectType<"forward">(subject);
 });
 ```
