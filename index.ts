@@ -1,8 +1,11 @@
+/** @private */
+const noop = () => {};
+
 /**
  * A noop function that prevents the given jest callback from actually running
  * @example
  * type MyType = number;
- * 
+ *
  * describe("MyType", () => {
  * 	it("resolves to a number", tyte((
  * 		value: MyType,
@@ -14,7 +17,7 @@
  * });
  */
 function tyte<Args extends any[], Callback extends (...args: Args) => void>(callback: Callback): Callback {
-	return (() => {}) as Callback;
+	return noop as Callback;
 }
 
 namespace tyte {
@@ -35,7 +38,9 @@ namespace tyte {
 	 * @example
 	 * tyte.expectType<number>(Date.now());
 	 */
-	export function expectType<Value = never>(subject: Value): void {}
+	export const expectType = noop as (
+		<Value = never>(subject: Value) => void
+	);
 
 	/**
 	 * Sub-module for function-related TypeScript-only assertions
@@ -47,14 +52,18 @@ namespace tyte {
 		 * tyte.fn.expectParams<[number]>(Math.round);
 		 * tyte.fn.expectParams<[]>(Math.random);
 		 */
-		export function expectParams<Params extends any[] = []>(subject: (...params: Params) => any): void {}
+		export const expectParams = noop as (
+			<Params extends any[] = []>(subject: (...params: Params) => any) => void
+		);
 
 		/**
 		 * Expect a given function to return a value of a given type
 		 * @example
 		 * tyte.fn.expectReturns<string>(Object.toString);
 		 */
-		export function expectReturns<Output = never>(subject: (...params: any[]) => Output): void {}
+		export const expectReturns = noop as (
+			<Output = never>(subject: (...params: any[]) => Output) => void
+		);
 	}
 }
 
