@@ -1,4 +1,14 @@
 /** @private */
+declare namespace JestTyte {
+	interface DoneCallback {
+		(...args: any[]): any;
+		fail(error?: string | { message: string }): any;
+	}
+
+	type ProvidesCallback = (cb: DoneCallback) => any;
+}
+
+/** @private */
 const noop = () => {};
 
 /**
@@ -16,8 +26,10 @@ const noop = () => {};
  * 	}));
  * });
  */
-function tyte<Args extends any[], Callback extends (...args: Args) => void>(callback: Callback): Callback {
-	return noop as Callback;
+function tyte<Subjects extends any[]>(...subjects: Subjects): JestTyte.ProvidesCallback;
+
+function tyte() {
+	return noop;
 }
 
 namespace tyte {

@@ -4,6 +4,8 @@ Write Jest tests for TypeScript types.
 
 # Usage
 
+> Also see **Caveats** section below
+
 ```ts
 export type MyNumber = number;
 export type MyFunction = (input: string) => boolean;
@@ -48,7 +50,7 @@ test("MyNumber should resolve to a number", tyte((
 }));
 ```
 
-## Iterate over several subjects in [`.each` methods](https://jestjs.io/docs/en/api#methods):
+## Iterate over several subjects in [`.each` methods]:
 
 ```ts
 type Forward = "forward";
@@ -62,3 +64,20 @@ test.each([
 	tyte.expectType<"forward">(subject);
 });
 ```
+
+## Caveats
+
+- Currently, it is not possible to use `tyte()` as a function in [`.each` methods], as in:
+
+	```ts
+	test.each(list)("should ...", tyte((element) => {
+		// ...
+	}));
+	```
+
+	Such code will produce compilation errors.
+
+	> Any suggestions and PRs are very welcome!
+
+
+  [`.each` methods]: https://jestjs.io/docs/en/api#methods
