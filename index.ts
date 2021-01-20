@@ -26,7 +26,7 @@ const noop = () => {};
  * 	}));
  * });
  */
-function tyte<Subjects extends any[]>(...subjects: Subjects): JestTyte.ProvidesCallback;
+function tyte<Subjects extends any[]>(callback: (...subjects: Subjects) => any): JestTyte.ProvidesCallback;
 
 function tyte() {
 	return noop;
