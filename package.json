@@ -1,7 +1,7 @@
 {
   "name": "tyte",
   "description": "Write Jest tests for TypeScript types",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "keywords": [
     "jest",
